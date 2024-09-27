@@ -17,8 +17,7 @@ app.get('/', (request, response) => {
 
 app.use('/books', booksRoute);
 
-mongoose
-    .connect(mongoDBURL)
+mongoose.connect(mongoDBURL)
     .then(() => {
         console.log('App connected to database');
         app.listen(PORT, () => {
