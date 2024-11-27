@@ -11,26 +11,24 @@ export const getBook = async (req, res) => {
 };
 
 export const uploadBook = async (req, res) => {
-    const { name, price, category, title } = req.body; // Extract data from request body
+    const { name, price, category, title } = req.body;
 
-    // Validate that an image is provided
     if (!req.file) {
         return res.status(400).json({ message: "Image file is required" });
     }
 
-    // Create a new book instance with binary image data
     const newBook = new Book({
         name,
         price,
         category,
         title,
-        image: req.file.buffer, // Store binary image data
-        contentType: req.file.mimetype, // Store the MIME type of the image
+        image: req.file.buffer,
+        contentType: req.file.mimetype,
     });
 
     try {
-        const savedBook = await newBook.save(); // Save to the database
-        res.status(201).json(savedBook); // Respond with the saved book
+        const savedBook = await newBook.save();
+        res.status(201).json(savedBook);
     } catch (error) {
         console.error("Error saving book: ", error);
         res.status(500).json({ message: "Error saving book", error });
