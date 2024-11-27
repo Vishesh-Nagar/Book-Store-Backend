@@ -4,19 +4,11 @@ import multer from "multer"; // Import multer
 
 const router = express.Router();
 
-// Configure storage settings for multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // The folder to store uploaded files
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname); // Store file with its original name
-    }
-});
-
-const upload = multer({ storage }); // Initialize multer with the storage configuration
+// Configure multer to store files in memory
+const storage = multer.memoryStorage(); // Store file data in memory as a Buffer
+const upload = multer({ storage }); // Initialize multer with memory storage
 
 router.get("/", getBook);
-router.post("/", upload.single('image'), uploadBook); // Use multer for image upload
+router.post("/", upload.single("image"), uploadBook); // Use multer for in-memory uploads
 
 export default router;

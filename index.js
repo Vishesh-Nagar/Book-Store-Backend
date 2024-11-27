@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import bookRoute from "./route/book.route.js";
-import userRoute from "./route/user.route.js"; // Assuming you have user routes
+import userRoute from "./route/user.route.js";
 
 dotenv.config();
 
