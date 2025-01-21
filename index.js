@@ -16,10 +16,9 @@ app.use(express.json());
 const PORT = process.env.PORT || 4001;
 const URI = process.env.MongoDBURI;
 
-mongoose
-    .connect(URI)
+mongoose.connect(URI)
     .then(() => console.log("Connected to MongoDB"))
-    .catch((error) => console.log("Error: ", error)); 
+    .catch((error) => console.log("Error: ", error));
 
 app.use("/book", bookRoute);
 app.use("/user", userRoute);

@@ -13,10 +13,6 @@ export const getBook = async (req, res) => {
 export const uploadBook = async (req, res) => {
     const { name, price, category, title } = req.body;
 
-    if (!req.file) {
-        return res.status(400).json({ message: "Image file is required" });
-    }
-
     const newBook = new Book({
         name,
         price,
